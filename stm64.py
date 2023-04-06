@@ -31,6 +31,14 @@ def update_start(start_t):
 
 uploaded_file = st.file_uploader("choose file", type=["webm" , "mp4"])
 if uploaded_file is not None:
+    with open(os.path.join(os.getcwd(), "temp_file.webm"), "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+    clip = VideoFileClip(os.path.join(os.getcwd(), "temp_file.webm"))
+    duration_sec = int(clip.duration)
+
+    hours, remainder = divmod(duration_sec, 3600)
+    minutes, seconds = divmod(remainder, 60)
 
     # play video file
     st.video(uploaded_file, start_time=0)
@@ -64,6 +72,7 @@ if uploaded_file is not None:
 
                 summary_text = f"\n\nDate:{datetime.datetime.now().strftime('%d-%m-%Y')}\n"
                 summary_text += f"Number of attendees: {num_attendees}\n"
+                summary_text += "Duration: {:02d}:{:02d}:{:02d}\n".format(hours, minutes, seconds)
                 summary_text += f"Names of the speaker: {speaker_names}\n\n"
                 summary_text += f"Points discussed in the meet:\n\n"
 
