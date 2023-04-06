@@ -31,10 +31,10 @@ def update_start(start_t):
 
 uploaded_file = st.file_uploader("choose file", type=["webm" , "mp4"])
 if uploaded_file is not None:
-    with open(os.path.join(os.getcwd(), "temp_file.webm"), "wb") as f:
+    with open("temp_file.webm", "wb") as f:
         f.write(uploaded_file.getbuffer())
 
-    clip = VideoFileClip(os.path.join(os.getcwd(), "temp_file.webm"))
+    clip = VideoFileClip("temp_file.webm")
     duration_sec = int(clip.duration)
 
     hours, remainder = divmod(duration_sec, 3600)
