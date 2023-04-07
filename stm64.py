@@ -43,6 +43,9 @@ if uploaded_file is not None:
     # play video file
     st.video(uploaded_file, start_time=0)
 
+    # get recipient email
+    Agenda = st.text_input('Enter agenda of the meet')
+
     # get number of attendees
     num_attendees = st.number_input('Number of attendees', min_value=1, value=1)
 
@@ -74,6 +77,7 @@ if uploaded_file is not None:
                 summary_text += f"Number of attendees: {num_attendees}\n"
                 summary_text += "Duration: {:02d}:{:02d}:{:02d}\n".format(hours, minutes, seconds)
                 summary_text += f"Names of the speaker: {speaker_names}\n\n"
+                summary_text += f"Agenda: {Agenda}\n\n"
                 summary_text += f"Points discussed in the meet:\n\n"
 
                 # take snapshots randomly from the video
