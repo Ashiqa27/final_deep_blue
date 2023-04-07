@@ -53,7 +53,7 @@ if uploaded_file is not None:
     speaker_names = st.text_input('Enter the names of the speakers (comma-separated)')
 
     # get recipient email
-    recipient_email = input("Enter recipient email(s), separated by commas: ").split(",")
+    recipient_email = recipient_email = st.text_input('Enter your email address')
     
     def generate_summary():
         # upload video to AssemblyAI
